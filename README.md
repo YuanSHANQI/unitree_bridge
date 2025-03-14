@@ -16,7 +16,8 @@
 ## 2.前期准备:
 
 ### 2.1 ros1_bridge安装:
-![alt text](image-18.png)
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/4b7dae5dfdbe4682afd96819f1136036.png#pic_center)
+
 在Foxy中安装ros1_bridge:
 `sudo apt install ros-foxy-ros1-bridge`
 
@@ -68,7 +69,9 @@ python3 topic_bridge.py "$TOPIC_NAMES" "$MESSAGE_NAMES"
 ### 2.3 查看topic的对应消息类型并修改.sh参数:
 `rostopic info /topic_name`
 `ros2 topic info /topic_name`
-![alt text](image-19.png)
+
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/4c14a1fbe68141d39e062a2753487131.png#pic_center)
+
 以这个imu数据为例(ros2):我们得到了`/unitree/imu`的消息类型为`sensor_msgs/msg/Imu`
 所以我们需要将.sh参数修改为
 ```
@@ -82,12 +85,14 @@ MESSAGE_NAMES="sensor_msgs.msg.Imu"
 输入用户密码赋予文件可执行权限,然后继续输入
 `./ros1_bridge.sh`
 
-![alt text](image-20.png)
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/b0c6c1162e9a46c0b8c2b238eb601e5c.png#pic_center)
+
 得到以下结果,即运行成功!!!
 
 ## 4.测试桥接:
    
-![alt text](<Screenshot from 2025-03-14 14-33-57.png>)
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/ab56fd07592d43fb93da8caf7b11e3ce.png#pic_center)
+
 可以看到imu数据在ros1能正常显示.
 
 ## 5.注意事项:
@@ -98,5 +103,3 @@ ros2 run ros1_bridge dynamic_bridge  &  # 后台运行
 **`--bridge-all-topics`:
 会将所有话题桥接,但是有个问题就有时候,ros2中没有ros1有的话题,启动后,ros2还是没有(这个真不好说,我的虚拟机环境是没有的,但是物理机环境却可以,但也不完全可以,有部分话题可以,有部分不可以),同理,ros1中没有ros2有的话题,启动后,ros1也没有(但一般有)
 所有为了保证稳定性,还是选取不添加这个参数,ros1和ros2中都有的topic(name,msg都相同)进行桥接,这样不会出现ros1没有ros2有的话题,ros2没有ros1有的话题的情况.**
-
-
