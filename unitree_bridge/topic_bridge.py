@@ -48,7 +48,7 @@ if __name__ == "__main__":
     publishers = {}
 
     for topic, msg_type in zip(topic_list, message_types):
-        publishers[topic] = rospy.Publisher(topic, msg_type, queue_size=10)
+        publishers[topic] = rospy.Subscriber(topic, msg_type, queue_size=10)
         print(f"\033[94m[INFO] 话题 {topic} -> {msg_type.__name__} 已创建\033[0m")
 
     rospy.spin()
